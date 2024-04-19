@@ -45,4 +45,33 @@ fn main() {
     println!("1st: {}", arr[0]);
     println!("Length: {}", arr.len());
 
+    //loop
+    
+    let mut loop_idx = 0;
+    // loop {
+    //     if arr[loop_idx] % 2 == 0 {
+    //         loop_idx += 1;
+    //         continue;
+    //     }
+
+    //     if arr[loop_idx] == 9{
+    //         break;
+    //     }
+    //     println!("Val: {}", arr[loop_idx]);
+    //     loop_idx += 1;
+    // }
+
+    while loop_idx < arr.len() {
+        println!("Arr: {}", arr[loop_idx]);
+        loop_idx += 1;
+    }
+
+    for val in arr.iter(){
+        println!("val: {}", val);
+    }
+
+    //tuples
+
+    
+
 }
