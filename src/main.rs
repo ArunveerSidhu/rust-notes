@@ -72,6 +72,11 @@ fn main() {
 
     //tuples
 
-    
+    let my_tuple: (u8, String, f64) = (47, "Derek".to_string(), 50_000.00);
+    let(v1, v2, v3) = my_tuple;
+    println!("name: {}", v2 );
+    println!("age: {}", v1 );
+    println!("balance: {}", v3);
+
 
 }
