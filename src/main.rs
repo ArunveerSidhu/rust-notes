@@ -5,8 +5,14 @@ use rand::Rng;
 use std::io::{Write, BufReader, BufRead, ErrorKind};
 use std::fs::File;
 use std::cmp::Ordering;
+use std::collections::HashMap;
+
+mod restaurant;
+use crate::restaurant::order_food;
 
 fn main() {
+    const PI: f32 = 3.14;
+
     //printing
     println!("what is your name?");
     let mut name: String = String::new();
@@ -178,6 +184,95 @@ fn main() {
 
     let num_list = vec![1,2,3,4,5];
     println!("Sum of list = {}", sum_list(&num_list));
+
+    /*
+    
+    ownership
+    
+    Stack: Stores values in a last in first out format
+    Data on the stack must have a defined fixed size
+    
+    Heap: When putting data on a heap you request a certain amount of space. The OS finds space available and returns an address for that space called a pointer.
+
+    Rules:
+        1. Each value has a variable that's called its owner
+        2. There is only one owner at a time 
+        3. When the owner goes out of scope the value disappears 
+   
+    */
+
+    //Hashmaps
+    
+    let mut heroes = HashMap::new();
+    heroes.insert("spiderman", "tom holland");
+    heroes.insert("Thor", "Chris Hemsworth");
+    
+    for(k,v) in heroes.iter(){
+        println!("{} = {}", k,v);
+    }
+
+    println!("Length: {}", heroes.len());
+
+    if heroes.contains_key(&"Thor"){
+        let the_thor = heroes.get(&"Thor");
+        match the_thor {
+            Some(x) => println!("Thor is a hero"),
+            None => println!("Thor is not a hero"),
+        }
+    }
+
+    //structs and traits
+        
+
+    trait Shape {
+        fn new(length:f32, width:f32) -> Self;
+        fn area(&self) -> f32;
+    }
+
+
+    struct Rectangle {length: f32, width: f32}
+    struct Circle {length: f32, width: f32}
+
+    // Implement the trait for rectangle
+    impl Shape for Rectangle{
+        // Constructor
+        fn new(length: f32, width: f32) -> Rectangle {
+            return Rectangle{length, width};
+        }
+
+        // self allows us to refer to parameters for this struct
+        fn area(&self) -> f32{
+            return self.length * self.width;
+        }
+    }
+
+    // Implement the trait for circle
+    impl Shape for Circle{
+        // Constructor
+        fn new(length: f32, width: f32) -> Circle {
+            return Circle{length, width};
+        }
+
+        fn area(&self) -> f32{
+            return (self.length / 2.0).powf(2.0) * PI;
+        }
+    }
+
+    // Create circle and rectangle with Shape
+    let rec: Rectangle = Shape::new(10.0, 10.0);
+    let circ: Circle = Shape::new(10.0, 10.0);
+
+    println!("Rec Area : {}", rec.area());
+    println!("Circ Area : {}", circ.area());
+
+    /*
+        Crates: Modules that produce a library or executable
+        Modules: Organize and handle privacy
+        Packages: Build, test and share crates
+        Paths: A way of naming an item such as a struct, function
+     */
+
+    order_food();
 
 }
 
