@@ -146,4 +146,49 @@ fn main() {
 
     println!("Is today the weekend {}", today.is_weekend());
 
+    // Vectors
+
+    let vec1: Vec<i32> = Vec::new();
+    let mut vec2: Vec<i32> = vec![1,2,3,4];
+    vec2.push(5);
+
+    println!("1st: {}", vec2[0]); 
+    let second: &i32 = &vec2[1];
+    match vec2.get(1) {
+        Some(second) => println!("2nd: {}",second),
+        None => println!("no second value"),
+    }
+
+    for i in &mut vec2 {
+        *i *= 2;
+    }
+
+    for i in &vec2 {
+        println!("{}", i);
+    }
+
+    println!("Vec Length {}", vec2.len());
+    println!("Pop : {:?}", vec2.pop());
+
+    
+    
+    // functions
+
+    println!("{} + {} = {}",3, 4,sum(3, 4));
+
+    let num_list = vec![1,2,3,4,5];
+    println!("Sum of list = {}", sum_list(&num_list));
+
+}
+
+fn sum(a:i32, b:i32) -> i32{
+    return a + b;
+}
+
+fn sum_list(list: &[i32]) -> i32 {
+    let mut sum:i32 = 0;
+    for &val in list.iter(){
+        sum += &val;
+    }
+    sum
 }
